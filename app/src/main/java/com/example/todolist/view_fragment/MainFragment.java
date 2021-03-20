@@ -38,8 +38,8 @@ public class MainFragment extends Fragment implements MainContract.View {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_main, container, false);
-        mTextView=(TextView)view.findViewById(R.id.text2);
-        mButton=(Button)view.findViewById(R.id.button2);
+        mTextView=(TextView)view.findViewById(R.id.dateTextView);
+        mButton=(Button)view.findViewById(R.id.calendarBtn);
         mButton.setOnClickListener(v -> {
             mPresenter.onButtonAddEvent();
         });
