@@ -1,17 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_700"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/list_background"
+    android:padding="10dp"
     tools:context=".view_fragment.FragmentOfDailyTasks">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/testTextViewDate"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="30sp"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <FrameLayout
+        android:id="@+id/container_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/teal_200"
+        app:layout_constraintBottom_toTopOf="@+id/btn_delete_all"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/testTextViewDate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/hello_blank_fragment"
+            android:textSize="30sp" />
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btn_complete_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/style_btn_delete_all"
+        android:fontFamily="@font/play_bold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="Delete all"
+        android:textAllCaps="false"
+        android:textColor="@color/bordo"
+        android:textSize="20sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_delete_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/style_btn_complete_all"
+        android:fontFamily="@font/play_bold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="Complete all"
+        android:textAllCaps="false"
+        android:textColor="@color/indian_green"
+        android:textSize="20sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toTopOf="@+id/btn_complete_all"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
