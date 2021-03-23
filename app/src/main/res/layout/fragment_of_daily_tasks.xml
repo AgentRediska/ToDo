@@ -16,7 +16,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="20dp"
         android:background="@color/teal_200"
-        app:layout_constraintBottom_toTopOf="@+id/btn_delete_all"
+        app:layout_constraintBottom_toTopOf="@+id/btn_complete_all"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -30,7 +30,7 @@
     </FrameLayout>
 
     <Button
-        android:id="@+id/btn_complete_all"
+        android:id="@+id/btn_delete_all"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -49,7 +49,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btn_delete_all"
+        android:id="@+id/btn_complete_all"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -63,7 +63,7 @@
         android:textColor="@color/indian_green"
         android:textSize="20sp"
         app:backgroundTint="@null"
-        app:layout_constraintBottom_toTopOf="@+id/btn_complete_all"
+        app:layout_constraintBottom_toTopOf="@+id/btn_delete_all"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
