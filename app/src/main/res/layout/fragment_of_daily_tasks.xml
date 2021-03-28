@@ -10,10 +10,12 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <FrameLayout
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/container_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
         android:layout_marginBottom="20dp"
         android:background="@color/teal_200"
         app:layout_constraintBottom_toTopOf="@+id/btn_complete_all"
@@ -21,13 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/testTextViewDate"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"
-            android:textSize="30sp" />
-    </FrameLayout>
+    </androidx.recyclerview.widget.RecyclerView>
 
     <Button
         android:id="@+id/btn_delete_all"
