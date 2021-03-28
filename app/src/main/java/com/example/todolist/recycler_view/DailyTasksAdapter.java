@@ -26,7 +26,7 @@ public class DailyTasksAdapter extends RecyclerView.Adapter<DailyTasksViewHolder
     @Override
     public DailyTasksViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view=mInflater.inflate(R.layout.list_item,parent,false);
-        return new DailyTasksViewHolder(view,this);
+        return new DailyTasksViewHolder(view);
     }
 
     @Override
