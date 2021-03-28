@@ -17,7 +17,6 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 
         android:layout_marginBottom="20dp"
-        android:background="@color/teal_200"
         app:layout_constraintBottom_toTopOf="@+id/btn_complete_all"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

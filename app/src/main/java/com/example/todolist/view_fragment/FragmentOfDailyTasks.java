@@ -9,14 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
-
-import com.example.todolist.FakeToDo;
 import com.example.todolist.R;
 import com.example.todolist.contract.DailyTasksFragmentContract;
 import com.example.todolist.presenter.DailyTasksFragmentPresenter;
-
-import java.util.ArrayList;
 
 
 public class FragmentOfDailyTasks extends Fragment implements DailyTasksFragmentContract.View{
