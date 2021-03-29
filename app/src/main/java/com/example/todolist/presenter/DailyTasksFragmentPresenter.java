@@ -13,8 +13,7 @@ import com.example.todolist.recycler_view.DailyTasksViewHolder;
 
 import java.util.ArrayList;
 
-public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.Presenter,
-        DailyTasksViewHolder.OnBtnClickListener {
+public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.Presenter, DailyTasksViewHolder.OnBtnClickListener {
 
     private DailyTasksFragmentContract.Model mModel;
     private DailyTasksFragmentContract.View mView;
@@ -55,7 +54,7 @@ public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.P
 
     @Override
     public void setRecyclerView(Context context, RecyclerView recyclerView) {
-        dailyTasksAdapter= new DailyTasksAdapter(context,mFakeToDoArrayList);
+        dailyTasksAdapter= new DailyTasksAdapter(context,mFakeToDoArrayList,this::onDeleteTaskBtnClick);
         recyclerView.setAdapter(dailyTasksAdapter);
     }
 
@@ -64,8 +63,10 @@ public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.P
 
     }
 
-    @Override
-    public void onDeleteTask(int position) {
 
+    @Override
+    public void onDeleteTaskBtnClick(int position) {
+        mFakeToDoArrayList.remove(position);
+        dailyTasksAdapter.notifyItemRemoved(position);
     }
 }

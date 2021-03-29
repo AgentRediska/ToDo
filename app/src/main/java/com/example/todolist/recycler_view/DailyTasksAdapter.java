@@ -16,8 +16,10 @@ import java.util.List;
 public class DailyTasksAdapter extends RecyclerView.Adapter<DailyTasksViewHolder> {
     private final LayoutInflater mInflater;
     private final List<FakeToDo> mFakeToDoList;
+    DailyTasksViewHolder.OnBtnClickListener mOnBtnClickListener;
 
-  public DailyTasksAdapter(Context context,List<FakeToDo> fakeList){
+  public DailyTasksAdapter(Context context, List<FakeToDo> fakeList, DailyTasksViewHolder.OnBtnClickListener onBtnClickListener){
+      this.mOnBtnClickListener=onBtnClickListener;
         this.mFakeToDoList=fakeList;
         this.mInflater=LayoutInflater.from(context);
     }
@@ -26,7 +28,7 @@ public class DailyTasksAdapter extends RecyclerView.Adapter<DailyTasksViewHolder
     @Override
     public DailyTasksViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view=mInflater.inflate(R.layout.list_item,parent,false);
-        return new DailyTasksViewHolder(view);
+        return new DailyTasksViewHolder(view,mOnBtnClickListener);
     }
 
     @Override
