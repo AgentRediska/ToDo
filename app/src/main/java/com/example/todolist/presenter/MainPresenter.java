@@ -1,7 +1,9 @@
 package com.example.todolist.presenter;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.text.format.DateUtils;
+import android.widget.DatePicker;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -17,30 +19,44 @@ public class MainPresenter implements MainContract.Presenter {
     FragmentTransaction ftAddFrag;
     private MainContract.View mView;
     private MainContract.Model mModel;
+    private Context fragmentContext;
 
     private Calendar dateAndTime=Calendar.getInstance();
-    private String message;
 
-    public MainPresenter(MainContract.View mView){
+    public MainPresenter(MainContract.View mView,Context context){
+        this.fragmentContext=context;
         this.mView=mView;
         this.mModel= new MainModel();
 
     }
 
     @Override
-    public void setDate() {
-
-        message=mModel.loadMessage();
-        mView.showText(message);
-
+    public void selectDate() {
+        new DatePickerDialog(fragmentContext,mOnDateSetListener,
+                dateAndTime.get(Calendar.YEAR),
+                dateAndTime.get(Calendar.MONTH),
+                dateAndTime.get(Calendar.DAY_OF_MONTH)).show();
     }
 
+    DatePickerDialog.OnDateSetListener mOnDateSetListener= (view, year, month, dayOfMonth) -> {
+        dateAndTime.set(Calendar.YEAR,year);
+        dateAndTime.set(Calendar.MONTH,month);
+        dateAndTime.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+        setInitialDateTime();
+    };
+
     @Override
-    public String setInitialDateTime(Context context) {
-        String dateText= DateUtils.formatDateTime(context,
+    public void setDate(String dateText) {
+        mView.showTextDate(dateText);
+    }
+
+
+    @Override
+    public void setInitialDateTime() {
+        String dateText= DateUtils.formatDateTime(fragmentContext,
                 dateAndTime.getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_DATE| DateUtils.FORMAT_SHOW_YEAR);
-        return dateText;
+        setDate(dateText);
     }
 
     @Override

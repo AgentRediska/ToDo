@@ -9,12 +9,13 @@ import com.example.todolist.view_fragment.FragmentOfDailyTasks;
 public interface MainContract {
 
     interface View{
-        void showText(String message);
+        void showTextDate(String message);
     }
 
     interface Presenter{
-        void setDate();
-        String setInitialDateTime(Context context);
+        void setDate(String dateText);
+        void selectDate();
+        void setInitialDateTime();
         FragmentOfDailyTasks onCreateFragmentTasks(String date);
         void onDestroy();
     }

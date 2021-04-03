@@ -33,7 +33,7 @@ public class MainFragment extends Fragment implements MainContract.View {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter= new MainPresenter(this);
+        mPresenter= new MainPresenter(this,getContext());
     }
 
     @Override
@@ -42,10 +42,10 @@ public class MainFragment extends Fragment implements MainContract.View {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_main, container, false);
         mTextView=(TextView)view.findViewById(R.id.dateTextView);
-        mTextView.setText(mPresenter.setInitialDateTime(getContext()) );
+        mPresenter.setInitialDateTime();
 
         mButton=(Button)view.findViewById(R.id.calendarBtn);
-        mButton.setOnClickListener(v -> mPresenter.setDate());
+        mButton.setOnClickListener(v -> mPresenter.selectDate());
 
         mButtonAddTask=(Button)view.findViewById(R.id.addTaskBtn);
         mButtonAddTask.setOnClickListener(v -> {
@@ -61,7 +61,7 @@ public class MainFragment extends Fragment implements MainContract.View {
     }
 
     @Override
-    public void showText(String message) {
+    public void showTextDate(String message) {
         mTextView.setText(message);
     }
 
