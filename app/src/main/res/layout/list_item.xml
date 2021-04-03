@@ -23,15 +23,17 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btnMarkCompleted"
+        android:id="@+id/btnDeleteToDo"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginRight="10dp"
         android:text="Del" />
 
     <Button
-        android:id="@+id/btnDeleteToDo"
+        android:id="@+id/btnMarkCompleted"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="Com" />
+
+
 </LinearLayout>
