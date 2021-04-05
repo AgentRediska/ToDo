@@ -10,6 +10,7 @@ public interface MainContract {
 
     interface View{
         void showTextDate(String message);
+        void replaceFragment();
     }
 
     interface Presenter{

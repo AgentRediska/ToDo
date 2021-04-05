@@ -56,6 +56,10 @@ public class MainPresenter implements MainContract.Presenter {
         String dateText= DateUtils.formatDateTime(fragmentContext,
                 dateAndTime.getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_DATE| DateUtils.FORMAT_SHOW_YEAR);
+
+        //цифровая дата
+        //DateUtils.FORMAT_NUMERIC_DATE|DateUtils.FORMAT_SHOW_YEAR);
+        //цифровая дата
         setDate(dateText);
     }
 

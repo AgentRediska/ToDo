@@ -54,7 +54,8 @@ public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.P
 
     @Override
     public void setRecyclerView(Context context, RecyclerView recyclerView) {
-        dailyTasksAdapter= new DailyTasksAdapter(context,mFakeToDoArrayList,this::onDeleteTaskBtnClick);
+        dailyTasksAdapter= new DailyTasksAdapter(context,this::onDeleteTaskBtnClick);
+        dailyTasksAdapter.setList(mFakeToDoArrayList);
         recyclerView.setAdapter(dailyTasksAdapter);
     }
 

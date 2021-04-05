@@ -49,14 +49,10 @@ public class MainFragment extends Fragment implements MainContract.View {
 
         mButtonAddTask=(Button)view.findViewById(R.id.addTaskBtn);
         mButtonAddTask.setOnClickListener(v -> {
-            FragmentTransaction ftAddFragTasks=getChildFragmentManager().beginTransaction();
-            FragmentOfDailyTasks fragmentOfDailyTasks=mPresenter.onCreateFragmentTasks(getTextViewString(mTextView));
-            ftAddFragTasks.replace(R.id.container_daily_tasks_fragment,fragmentOfDailyTasks);
-            ftAddFragTasks.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-            ftAddFragTasks.addToBackStack(null);
-            ftAddFragTasks.commit();
+        //v -> replaceFragment()
         });
 
+        replaceFragment();
         return view;
     }
 
@@ -71,6 +67,15 @@ public class MainFragment extends Fragment implements MainContract.View {
         mPresenter.onDestroy();
     }
 
+     @Override
+    public void replaceFragment(){
+        FragmentTransaction ftAddFragTasks=getChildFragmentManager().beginTransaction();
+        FragmentOfDailyTasks fragmentOfDailyTasks=mPresenter.onCreateFragmentTasks(getTextViewString(mTextView));
+        ftAddFragTasks.replace(R.id.container_daily_tasks_fragment,fragmentOfDailyTasks);
+        ftAddFragTasks.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ftAddFragTasks.addToBackStack(null);
+        ftAddFragTasks.commit();
+    }
 
     public String getTextViewString(TextView textView){
         String textViewString=textView.getText().toString();
