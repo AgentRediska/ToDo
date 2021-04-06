@@ -11,6 +11,7 @@ public interface DailyTasksFragmentContract {
 
      interface Model{
          String loadMessage();
+         void deleteToDoTask();
      }
 
      interface Presenter{

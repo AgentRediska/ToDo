@@ -8,4 +8,9 @@ public class DailyTasksFragmentModel implements DailyTasksFragmentContract.Model
         String testText="hello";
         return testText;
     }
+
+    @Override
+    public void deleteToDoTask() {
+        //
+    }
 }

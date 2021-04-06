@@ -46,12 +46,6 @@ public class MainPresenter implements MainContract.Presenter {
     };
 
     @Override
-    public void setDate(String dateText) {
-        mView.showTextDate(dateText);
-    }
-
-
-    @Override
     public void setInitialDateTime() {
         String dateText= DateUtils.formatDateTime(fragmentContext,
                 dateAndTime.getTimeInMillis(),
@@ -61,6 +55,18 @@ public class MainPresenter implements MainContract.Presenter {
         //DateUtils.FORMAT_NUMERIC_DATE|DateUtils.FORMAT_SHOW_YEAR);
         //цифровая дата
         setDate(dateText);
+    }
+
+    @Override
+    public void setDate(String dateText) {
+        mView.showTextDate(dateText);
+    }
+
+    @Override
+    public void generateToDo() {
+        mModel.addToDoTask(fragmentContext,"05.04.21","Помыть посуду",0,"бла бла бла");
+        mModel.addToDoTask(fragmentContext,"05.04.21","Сделать пары",0,"блак блак блак");
+        mModel.addToDoTask(fragmentContext,"05.04.21","Пойти спать",0,"бу бу бу бу");
     }
 
     @Override

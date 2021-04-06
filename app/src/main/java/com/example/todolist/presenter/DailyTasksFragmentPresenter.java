@@ -50,6 +50,8 @@ public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.P
     @Override
     public void onButtonDeleteAllEvent() {
         //удалить все элементы рисайкла
+        mFakeToDoArrayList.clear();
+        dailyTasksAdapter.notifyDataSetChanged();
     }
 
     @Override

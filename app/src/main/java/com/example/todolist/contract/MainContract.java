@@ -16,6 +16,7 @@ public interface MainContract {
     interface Presenter{
         void setDate(String dateText);
         void selectDate();
+        void generateToDo();
         void setInitialDateTime();
         FragmentOfDailyTasks onCreateFragmentTasks(String date);
         void onDestroy();
@@ -23,5 +24,7 @@ public interface MainContract {
 
     interface Model{
         String loadMessage();
+        void addToDoTask(Context context, String date,
+                         String title, int done, String detail);
     }
 }
