@@ -41,7 +41,7 @@ public class FragmentOfDailyTasks extends Fragment implements DailyTasksFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBundle=this.getArguments();
-        mPresenter=new DailyTasksFragmentPresenter(this);
+        mPresenter=new DailyTasksFragmentPresenter(this,getContext());
 
     }
 
@@ -51,7 +51,7 @@ public class FragmentOfDailyTasks extends Fragment implements DailyTasksFragment
         View view= inflater.inflate(R.layout.fragment_of_daily_tasks, container, false);
 
         RecyclerView recyclerViewToDo= (RecyclerView)view.findViewById(R.id.container_list);
-        mPresenter.setRecyclerView(getContext(),recyclerViewToDo);
+        mPresenter.setRecyclerView(recyclerViewToDo);
 
 
         btn_complete_all=(Button)view.findViewById(R.id.btn_complete_all);

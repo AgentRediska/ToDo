@@ -1,6 +1,7 @@
 package com.example.todolist.presenter;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,13 +18,15 @@ public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.P
 
     private DailyTasksFragmentContract.Model mModel;
     private DailyTasksFragmentContract.View mView;
+    private Context mContext;
 
     private DailyTasksAdapter dailyTasksAdapter;
     //!
     ArrayList<FakeToDo> mFakeToDoArrayList= new ArrayList<>();
 
-    public DailyTasksFragmentPresenter(DailyTasksFragmentContract.View view) {
-        this.mModel = new DailyTasksFragmentModel();
+    public DailyTasksFragmentPresenter(DailyTasksFragmentContract.View view,Context context) {
+        this.mContext=context;
+        this.mModel = new DailyTasksFragmentModel(mContext);
         this.mView = view;
 
         //!
@@ -55,8 +58,8 @@ public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.P
     }
 
     @Override
-    public void setRecyclerView(Context context, RecyclerView recyclerView) {
-        dailyTasksAdapter= new DailyTasksAdapter(context,this::onDeleteTaskBtnClick);
+    public void setRecyclerView(RecyclerView recyclerView) {
+        dailyTasksAdapter= new DailyTasksAdapter(mContext,this::onDeleteTaskBtnClick);
         dailyTasksAdapter.setList(mFakeToDoArrayList);
         recyclerView.setAdapter(dailyTasksAdapter);
     }
@@ -71,5 +74,10 @@ public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.P
     public void onDeleteTaskBtnClick(int position) {
         mFakeToDoArrayList.remove(position);
         dailyTasksAdapter.notifyItemRemoved(position);
+    }
+
+    @Override
+    public void takeToDoFromDB() {
+        mModel.getTasksFromDB();
     }
 }

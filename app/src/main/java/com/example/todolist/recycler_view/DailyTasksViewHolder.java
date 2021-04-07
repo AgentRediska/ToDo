@@ -30,6 +30,7 @@ public class DailyTasksViewHolder extends RecyclerView.ViewHolder
         deleteTask=(Button) view.findViewById(R.id.btnDeleteToDo);
         deleteTask.setOnClickListener(v->{
             int position=getAdapterPosition();
+            //передадим строку
             mOnBtnClickListener.onDeleteTaskBtnClick(position);
         });
     }

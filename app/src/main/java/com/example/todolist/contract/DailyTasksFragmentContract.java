@@ -1,5 +1,6 @@
 package com.example.todolist.contract;
 
+import android.content.ContentValues;
 import android.content.Context;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,14 +11,15 @@ public interface DailyTasksFragmentContract {
      }
 
      interface Model{
-         String loadMessage();
          void deleteToDoTask();
+         void getTasksFromDB();
      }
 
      interface Presenter{
          void onButtonCompleteAllEvent();
          void onButtonDeleteAllEvent();
-         void setRecyclerView(Context context, RecyclerView recyclerView);
+         void takeToDoFromDB();
+         void setRecyclerView(RecyclerView recyclerView);
          void onDestroy();
      }
 }

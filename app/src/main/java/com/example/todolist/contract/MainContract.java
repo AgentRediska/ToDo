@@ -23,7 +23,6 @@ public interface MainContract {
     }
 
     interface Model{
-        String loadMessage();
         void addToDoTask(Context context, String date,
                          String title, int done, String detail);
     }

@@ -15,11 +15,6 @@ public class MainModel implements MainContract.Model {
     final String LOG_TAG = "myLogs";
 
     @Override
-    public String loadMessage() {
-        return "sasiska";
-    }
-
-    @Override
     public void addToDoTask(Context context, String date,
                             String title, int done, String detail) {
 
