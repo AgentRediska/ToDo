@@ -5,9 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.todolist.FakeToDo;
+import com.example.todolist.ToDo;
 import com.example.todolist.contract.DailyTasksFragmentContract;
-import com.example.todolist.contract.MainContract;
 import com.example.todolist.model.DailyTasksFragmentModel;
 import com.example.todolist.recycler_view.DailyTasksAdapter;
 import com.example.todolist.recycler_view.DailyTasksViewHolder;
@@ -22,26 +21,15 @@ public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.P
 
     private DailyTasksAdapter dailyTasksAdapter;
     //!
-    ArrayList<FakeToDo> mFakeToDoArrayList= new ArrayList<>();
+    ArrayList<ToDo> mToDoArrayList;
 
     public DailyTasksFragmentPresenter(DailyTasksFragmentContract.View view,Context context) {
         this.mContext=context;
         this.mModel = new DailyTasksFragmentModel(mContext);
         this.mView = view;
 
-        //!
-        mFakeToDoArrayList.add(new FakeToDo("Go"));
-        mFakeToDoArrayList.add(new FakeToDo("Find"));
-        mFakeToDoArrayList.add(new FakeToDo("dwdwddddddddddddddddddddd"));
-        mFakeToDoArrayList.add(new FakeToDo("q"));
-        mFakeToDoArrayList.add(new FakeToDo("Gwdwdqrwqrwro"));
-        mFakeToDoArrayList.add(new FakeToDo("3dqwd"));
-        mFakeToDoArrayList.add(new FakeToDo("Go"));
-        mFakeToDoArrayList.add(new FakeToDo("Fwdfwqfind"));
-        mFakeToDoArrayList.add(new FakeToDo("Ggrgo"));
-        mFakeToDoArrayList.add(new FakeToDo("Find"));
-        mFakeToDoArrayList.add(new FakeToDo("Gofewfewfewfvgse"));
-        mFakeToDoArrayList.add(new FakeToDo("Fqwewwwfqind"));
+         mToDoArrayList= takeToDoFromDB();
+
 
     }
 
@@ -53,14 +41,14 @@ public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.P
     @Override
     public void onButtonDeleteAllEvent() {
         //удалить все элементы рисайкла
-        mFakeToDoArrayList.clear();
-        dailyTasksAdapter.notifyDataSetChanged();
+        //mFakeToDoArrayList.clear();
+        //dailyTasksAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void setRecyclerView(RecyclerView recyclerView) {
         dailyTasksAdapter= new DailyTasksAdapter(mContext,this::onDeleteTaskBtnClick);
-        dailyTasksAdapter.setList(mFakeToDoArrayList);
+        dailyTasksAdapter.setList(mToDoArrayList);
         recyclerView.setAdapter(dailyTasksAdapter);
     }
 
@@ -72,12 +60,12 @@ public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.P
 
     @Override
     public void onDeleteTaskBtnClick(int position) {
-        mFakeToDoArrayList.remove(position);
-        dailyTasksAdapter.notifyItemRemoved(position);
+       // mFakeToDoArrayList.remove(position);
+       // dailyTasksAdapter.notifyItemRemoved(position);
     }
 
     @Override
-    public void takeToDoFromDB() {
-        mModel.getTasksFromDB();
+    public ArrayList<ToDo> takeToDoFromDB() {
+       return mModel.getTasksFromDB();
     }
 }

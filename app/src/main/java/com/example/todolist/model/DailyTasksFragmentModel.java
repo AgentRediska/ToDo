@@ -25,38 +25,41 @@ public class DailyTasksFragmentModel implements DailyTasksFragmentContract.Model
     }
 
     @Override
-    public void getTasksFromDB() {
+    public ArrayList<ToDo>  getTasksFromDB() {
         SQLiteDatabase database=mDatabaseHelper.getReadableDatabase();
+        ArrayList<ToDo> mToDoArrayList = new ArrayList<>();
         Cursor cursor=database.query(DatabaseHelper.DB_TABLE,null,null,
                 null,null,null,null);
 
         if (cursor.moveToFirst()){
-            getToDoArrayList(cursor);
-        }else{cursor.close();}
+            return getToDoArrayList(cursor);
+        }else
+            cursor.close();
+            return mToDoArrayList;
     }
 
 
 
-    private ArrayList<ToDo> getToDoArrayList(Cursor local_cursor) {
-        ArrayList<ToDo> mToDoArrayList = new ArrayList<>();
+    private ArrayList<ToDo> getToDoArrayList(Cursor localCursor) {
 
-            int idColIndex = local_cursor.getColumnIndex("_id");
-            int dateColIndex = local_cursor.getColumnIndex("DATE");
-            int titleColIndex = local_cursor.getColumnIndex("TITLE");
-            int doneColIndex = local_cursor.getColumnIndex("DONE");
-            int detailColIndex = local_cursor.getColumnIndex("DETAIL");
+        ArrayList<ToDo> list = new ArrayList<>();
+            int idColIndex = localCursor.getColumnIndex("_id");
+            int dateColIndex = localCursor.getColumnIndex("DATE");
+            int titleColIndex = localCursor.getColumnIndex("TITLE");
+            int doneColIndex = localCursor.getColumnIndex("DONE");
+            int detailColIndex = localCursor.getColumnIndex("DETAIL");
 
             do {
                 ToDo toDo = new ToDo();
-                toDo.setId(local_cursor.getInt(idColIndex));
-                toDo.setDate(local_cursor.getString(dateColIndex));
-                toDo.setTitle(local_cursor.getString(titleColIndex));
-                toDo.setDone(local_cursor.getString(doneColIndex));
-                toDo.setDetail(local_cursor.getString(detailColIndex));
-                mToDoArrayList.add(toDo);
-            } while (local_cursor.moveToNext());
+                toDo.setId(localCursor.getInt(idColIndex));
+                toDo.setDate(localCursor.getString(dateColIndex));
+                toDo.setTitle(localCursor.getString(titleColIndex));
+                toDo.setDone(localCursor.getString(doneColIndex));
+                toDo.setDetail(localCursor.getString(detailColIndex));
+                list.add(toDo);
+            } while (localCursor.moveToNext());
 
-        return mToDoArrayList;
+        return list;
     }
 
 }

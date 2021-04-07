@@ -5,6 +5,10 @@ import android.content.Context;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.todolist.ToDo;
+
+import java.util.ArrayList;
+
 public interface DailyTasksFragmentContract {
 
      interface View{
@@ -12,13 +16,13 @@ public interface DailyTasksFragmentContract {
 
      interface Model{
          void deleteToDoTask();
-         void getTasksFromDB();
+         ArrayList<ToDo>  getTasksFromDB();
      }
 
      interface Presenter{
          void onButtonCompleteAllEvent();
          void onButtonDeleteAllEvent();
-         void takeToDoFromDB();
+         ArrayList<ToDo> takeToDoFromDB();
          void setRecyclerView(RecyclerView recyclerView);
          void onDestroy();
      }

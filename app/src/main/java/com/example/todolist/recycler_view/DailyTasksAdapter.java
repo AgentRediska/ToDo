@@ -10,13 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todolist.FakeToDo;
 import com.example.todolist.R;
+import com.example.todolist.ToDo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DailyTasksAdapter extends RecyclerView.Adapter<DailyTasksViewHolder> {
     private final LayoutInflater mInflater;
-    private List<FakeToDo> mFakeToDoList;
+    private List<ToDo> mToDoArrayList;
     DailyTasksViewHolder.OnBtnClickListener mOnBtnClickListener;
 
   public DailyTasksAdapter(Context context, DailyTasksViewHolder.OnBtnClickListener onBtnClickListener){
@@ -34,17 +35,17 @@ public class DailyTasksAdapter extends RecyclerView.Adapter<DailyTasksViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull DailyTasksViewHolder holder, int position) {
-        FakeToDo fake= mFakeToDoList.get(position);
-        holder.nameView.setText(fake.getName());
+        ToDo fake= mToDoArrayList.get(position);
+        holder.nameView.setText(fake.getTitle());
     }
 
     @Override
     public int getItemCount() {
-        return mFakeToDoList.size();
+        return mToDoArrayList.size();
     }
 
 
-    public void setList(List<FakeToDo> list){
-        this.mFakeToDoList=list;
+    public void setList(List<ToDo> list){
+        this.mToDoArrayList=list;
     }
 }
