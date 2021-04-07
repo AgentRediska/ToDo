@@ -17,6 +17,7 @@ public interface DailyTasksFragmentContract {
      interface Model{
          void deleteToDoTask(long id);
          ArrayList<ToDo>  getAllTasksFromDB();
+         ArrayList<ToDo>  getAllTasksByDate( String date);
      }
 
      interface Presenter{

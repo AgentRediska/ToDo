@@ -23,6 +23,7 @@ public class FragmentOfDailyTasks extends Fragment implements DailyTasksFragment
 
     private Button btn_complete_all;
     private Button btn_delete_all;
+    private String date;
 
 
     public static FragmentOfDailyTasks newFragmentOfDailyTasks(String date){
@@ -41,7 +42,8 @@ public class FragmentOfDailyTasks extends Fragment implements DailyTasksFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBundle=this.getArguments();
-        mPresenter=new DailyTasksFragmentPresenter(this,getContext());
+        date=mBundle.getString(ARG_DATE);
+        mPresenter=new DailyTasksFragmentPresenter(this,getContext(), date);
 
     }
 

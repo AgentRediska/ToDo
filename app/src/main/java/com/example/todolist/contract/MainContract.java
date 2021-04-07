@@ -18,7 +18,8 @@ public interface MainContract {
         void selectDate();
         void generateToDo();
         void setInitialDateTime();
-        FragmentOfDailyTasks onCreateFragmentTasks(String date);
+        void setInitialNumericDateTime();
+        FragmentOfDailyTasks onCreateFragmentTasks();
         void onDestroy();
     }
 

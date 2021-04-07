@@ -17,13 +17,15 @@ public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.P
 
     private DailyTasksFragmentContract.Model mModel;
     private DailyTasksFragmentContract.View mView;
-    private Context mContext;
+    private final Context mContext;
+    private final String date;
 
     private DailyTasksAdapter dailyTasksAdapter;
     //!
     ArrayList<ToDo> mToDoArrayList;
 
-    public DailyTasksFragmentPresenter(DailyTasksFragmentContract.View view,Context context) {
+    public DailyTasksFragmentPresenter(DailyTasksFragmentContract.View view,Context context, String date) {
+        this.date=date;
         this.mContext=context;
         this.mModel = new DailyTasksFragmentModel(mContext);
         this.mView = view;
@@ -71,6 +73,6 @@ public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.P
 
     @Override
     public ArrayList<ToDo> takeToDoFromDB() {
-       return mModel.getAllTasksFromDB();
+       return mModel.getAllTasksByDate(date);
     }
 }

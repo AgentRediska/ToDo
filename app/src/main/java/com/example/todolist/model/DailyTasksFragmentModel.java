@@ -3,6 +3,7 @@ package com.example.todolist.model;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.todolist.ToDo;
 import com.example.todolist.contract.DailyTasksFragmentContract;
@@ -11,6 +12,9 @@ import com.example.todolist.database.DatabaseHelper;
 import java.util.ArrayList;
 
 public class DailyTasksFragmentModel implements DailyTasksFragmentContract.Model {
+
+    final String LOG_TAG = "myLogs";
+
    private DatabaseHelper mDatabaseHelper;
    private Context mContext;
 
@@ -41,6 +45,23 @@ public class DailyTasksFragmentModel implements DailyTasksFragmentContract.Model
             return mToDoArrayList;
     }
 
+    @Override
+    public ArrayList<ToDo> getAllTasksByDate(String date) {
+        Log.d(LOG_TAG, "DATE = " + date);
+        SQLiteDatabase database=mDatabaseHelper.getReadableDatabase();
+        ArrayList<ToDo> mToDoArrayList = new ArrayList<>();
+        String selection="DATE = ?";
+        String[] selectionArgs= new String[]{ date };
+        Cursor cursor=database.query(DatabaseHelper.DB_TABLE,null,selection,
+                selectionArgs,null,null,null);
+
+        if (cursor.moveToFirst()){
+            mDatabaseHelper.close();
+            return getToDoArrayList(cursor);
+        }else
+            mDatabaseHelper.close();
+        return mToDoArrayList;
+    }
 
 
     private ArrayList<ToDo> getToDoArrayList(Cursor localCursor) {

@@ -20,6 +20,7 @@ public class MainPresenter implements MainContract.Presenter {
     private MainContract.View mView;
     private MainContract.Model mModel;
     private Context fragmentContext;
+    private String dateNumericText;
 
     private Calendar dateAndTime=Calendar.getInstance();
 
@@ -43,6 +44,8 @@ public class MainPresenter implements MainContract.Presenter {
         dateAndTime.set(Calendar.MONTH,month);
         dateAndTime.set(Calendar.DAY_OF_MONTH,dayOfMonth);
         setInitialDateTime();
+        setInitialNumericDateTime();
+        mView.replaceFragment();
     };
 
     @Override
@@ -50,11 +53,15 @@ public class MainPresenter implements MainContract.Presenter {
         String dateText= DateUtils.formatDateTime(fragmentContext,
                 dateAndTime.getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_DATE| DateUtils.FORMAT_SHOW_YEAR);
-
-        //цифровая дата
-        //DateUtils.FORMAT_NUMERIC_DATE|DateUtils.FORMAT_SHOW_YEAR);
-        //цифровая дата
         setDate(dateText);
+
+    }
+
+    @Override
+    public void setInitialNumericDateTime() {
+        dateNumericText= DateUtils.formatDateTime(fragmentContext,
+                dateAndTime.getTimeInMillis(),
+                DateUtils.FORMAT_NUMERIC_DATE|DateUtils.FORMAT_SHOW_YEAR);
     }
 
     @Override
@@ -64,14 +71,14 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void generateToDo() {
-        mModel.addToDoTask(fragmentContext,"05.04.21","Помыть посуду",0,"бла бла бла");
-        mModel.addToDoTask(fragmentContext,"05.04.21","Сделать пары",0,"блак блак блак");
-        mModel.addToDoTask(fragmentContext,"05.04.21","Пойти спать",0,"бу бу бу бу");
+        mModel.addToDoTask(fragmentContext,"07.04.2021","Помыть посуду",0,"бла бла бла");
+        mModel.addToDoTask(fragmentContext,"05.04.2021","Сделать пары",0,"блак блак блак");
+        mModel.addToDoTask(fragmentContext,"05.04.2021","Пойти спать",0,"бу бу бу бу");
     }
 
     @Override
-    public FragmentOfDailyTasks onCreateFragmentTasks(String date) {
-        FragmentOfDailyTasks fragmentOfDailyTasks= FragmentOfDailyTasks.newFragmentOfDailyTasks(date);
+    public FragmentOfDailyTasks onCreateFragmentTasks() {
+        FragmentOfDailyTasks fragmentOfDailyTasks= FragmentOfDailyTasks.newFragmentOfDailyTasks(dateNumericText);
         return fragmentOfDailyTasks;
     }
 

@@ -24,7 +24,7 @@ public class MainFragment extends Fragment implements MainContract.View {
   private Button mButton;
   private Button mButtonAddTask;
   private TextView mTextView;
-
+  private FragmentTransaction ftAddFragTasks;
     public MainFragment() {
         // Required empty public constructor
     }
@@ -43,6 +43,7 @@ public class MainFragment extends Fragment implements MainContract.View {
         View view=inflater.inflate(R.layout.fragment_main, container, false);
         mTextView=(TextView)view.findViewById(R.id.dateTextView);
         mPresenter.setInitialDateTime();
+        mPresenter.setInitialNumericDateTime();
 
         mButton=(Button)view.findViewById(R.id.calendarBtn);
         mButton.setOnClickListener(v -> mPresenter.selectDate());
@@ -70,11 +71,11 @@ public class MainFragment extends Fragment implements MainContract.View {
 
      @Override
     public void replaceFragment(){
-        FragmentTransaction ftAddFragTasks=getChildFragmentManager().beginTransaction();
-        FragmentOfDailyTasks fragmentOfDailyTasks=mPresenter.onCreateFragmentTasks(getTextViewString(mTextView));
+        ftAddFragTasks=getChildFragmentManager().beginTransaction();
+        FragmentOfDailyTasks fragmentOfDailyTasks=mPresenter.onCreateFragmentTasks();
         ftAddFragTasks.replace(R.id.container_daily_tasks_fragment,fragmentOfDailyTasks);
         ftAddFragTasks.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        ftAddFragTasks.addToBackStack(null);
+       // ftAddFragTasks.addToBackStack(null);
         ftAddFragTasks.commit();
     }
 
