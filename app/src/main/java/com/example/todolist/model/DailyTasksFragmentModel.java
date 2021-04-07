@@ -20,21 +20,24 @@ public class DailyTasksFragmentModel implements DailyTasksFragmentContract.Model
     }
 
     @Override
-    public void deleteToDoTask() {
-        //
+    public void deleteToDoTask(long id) {
+        SQLiteDatabase database=mDatabaseHelper.getWritableDatabase();
+        database.delete(DatabaseHelper.DB_TABLE,"_id = "+id,null);
+        mDatabaseHelper.close();
     }
 
     @Override
-    public ArrayList<ToDo>  getTasksFromDB() {
+    public ArrayList<ToDo>  getAllTasksFromDB() {
         SQLiteDatabase database=mDatabaseHelper.getReadableDatabase();
         ArrayList<ToDo> mToDoArrayList = new ArrayList<>();
         Cursor cursor=database.query(DatabaseHelper.DB_TABLE,null,null,
                 null,null,null,null);
 
         if (cursor.moveToFirst()){
+            mDatabaseHelper.close();
             return getToDoArrayList(cursor);
         }else
-            cursor.close();
+            mDatabaseHelper.close();
             return mToDoArrayList;
     }
 

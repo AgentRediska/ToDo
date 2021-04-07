@@ -15,15 +15,17 @@ public interface DailyTasksFragmentContract {
      }
 
      interface Model{
-         void deleteToDoTask();
-         ArrayList<ToDo>  getTasksFromDB();
+         void deleteToDoTask(long id);
+         ArrayList<ToDo>  getAllTasksFromDB();
      }
 
      interface Presenter{
          void onButtonCompleteAllEvent();
          void onButtonDeleteAllEvent();
-         ArrayList<ToDo> takeToDoFromDB();
          void setRecyclerView(RecyclerView recyclerView);
          void onDestroy();
+
+         ArrayList<ToDo> takeToDoFromDB();
+
      }
 }

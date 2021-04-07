@@ -60,12 +60,17 @@ public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.P
 
     @Override
     public void onDeleteTaskBtnClick(int position) {
-       // mFakeToDoArrayList.remove(position);
-       // dailyTasksAdapter.notifyItemRemoved(position);
+       ToDo oneTaskForDelete= mToDoArrayList.get(position);
+       mModel.deleteToDoTask(oneTaskForDelete.getId());
+       long id= oneTaskForDelete.getId();
+
+       //отправить запрос в БД и удалить
+        mToDoArrayList.remove(position);
+        dailyTasksAdapter.notifyItemRemoved(position);
     }
 
     @Override
     public ArrayList<ToDo> takeToDoFromDB() {
-       return mModel.getTasksFromDB();
+       return mModel.getAllTasksFromDB();
     }
 }
