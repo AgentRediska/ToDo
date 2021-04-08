@@ -8,35 +8,60 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.todolist.FakeToDo;
 import com.example.todolist.R;
 import com.example.todolist.ToDo;
+import com.example.todolist.presenter.DailyTasksFragmentPresenter;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class DailyTasksAdapter extends RecyclerView.Adapter<DailyTasksViewHolder> {
+public class DailyTasksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final LayoutInflater mInflater;
     private List<ToDo> mToDoArrayList;
-    DailyTasksViewHolder.OnBtnClickListener mOnBtnClickListener;
+    private ToDo fakeToDo;
+    private final DailyTasksFragmentPresenter dailyTasksFragmentPresenter;
 
-  public DailyTasksAdapter(Context context, DailyTasksViewHolder.OnBtnClickListener onBtnClickListener){
-      this.mOnBtnClickListener=onBtnClickListener;
+  public DailyTasksAdapter(Context context, DailyTasksFragmentPresenter dailyTasksFragmentPresenter){
       //  this.mFakeToDoList=fakeList;
+      this.dailyTasksFragmentPresenter=dailyTasksFragmentPresenter;
         this.mInflater=LayoutInflater.from(context);
     }
 
-    @NonNull
     @Override
-    public DailyTasksViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view=mInflater.inflate(R.layout.list_item,parent,false);
-        return new DailyTasksViewHolder(view,mOnBtnClickListener);
+    public int getItemViewType(int position) {
+        fakeToDo =mToDoArrayList.get(position);
+        int done= Integer.parseInt( fakeToDo.getDone() );
+        return done;
+    }
+
+    @NonNull
+
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+      View viewTask;
+      if(viewType==0) {
+          viewTask = mInflater.inflate(
+                  R.layout.list_item_not_done, parent, false);
+              return new DailyTasksViewHolderNotDone(viewTask,this.dailyTasksFragmentPresenter);
+        }else {
+          viewTask = mInflater.inflate(
+                  R.layout.list_item_done, parent, false);
+          return new DailyTasksViewHolderDone(viewTask,this.dailyTasksFragmentPresenter);
+            }
+
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DailyTasksViewHolder holder, int position) {
-        ToDo fake= mToDoArrayList.get(position);
-        holder.nameView.setText(fake.getTitle());
+    public void onBindViewHolder(@NonNull  RecyclerView.ViewHolder holder, int position) {
+        fakeToDo= mToDoArrayList.get(position);
+        if(holder.getItemViewType()==0) {
+            DailyTasksViewHolderNotDone holderNotDone=
+                            (DailyTasksViewHolderNotDone)holder;
+            holderNotDone.nameView.setText(fakeToDo.getTitle());
+        }else {
+            DailyTasksViewHolderDone holderDone=
+                    (DailyTasksViewHolderDone)holder;
+            holderDone.nameView.setText(fakeToDo.getTitle());
+        }
     }
 
     @Override

@@ -73,7 +73,7 @@ public class MainPresenter implements MainContract.Presenter {
     public void generateToDo() {
         mModel.addToDoTask(fragmentContext,"07.04.2021","Помыть посуду",0,"бла бла бла");
         mModel.addToDoTask(fragmentContext,"05.04.2021","Сделать пары",0,"блак блак блак");
-        mModel.addToDoTask(fragmentContext,"05.04.2021","Пойти спать",0,"бу бу бу бу");
+        mModel.addToDoTask(fragmentContext,"05.04.2021","Пойти спать",1,"бу бу бу бу");
     }
 
     @Override

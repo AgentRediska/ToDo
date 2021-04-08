@@ -63,6 +63,12 @@ public class DailyTasksFragmentModel implements DailyTasksFragmentContract.Model
         return mToDoArrayList;
     }
 
+    @Override
+    public void deleteAllTodoForTheDay(String date) {
+        SQLiteDatabase database=mDatabaseHelper.getWritableDatabase();
+        database.delete(DatabaseHelper.DB_TABLE,"DATE = \""+date +"\"",null);
+        mDatabaseHelper.close();
+    }
 
     private ArrayList<ToDo> getToDoArrayList(Cursor localCursor) {
 

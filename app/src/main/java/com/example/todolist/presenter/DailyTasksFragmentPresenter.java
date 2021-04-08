@@ -1,7 +1,6 @@
 package com.example.todolist.presenter;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,11 +8,10 @@ import com.example.todolist.ToDo;
 import com.example.todolist.contract.DailyTasksFragmentContract;
 import com.example.todolist.model.DailyTasksFragmentModel;
 import com.example.todolist.recycler_view.DailyTasksAdapter;
-import com.example.todolist.recycler_view.DailyTasksViewHolder;
 
 import java.util.ArrayList;
 
-public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.Presenter, DailyTasksViewHolder.OnBtnClickListener {
+public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.Presenter {
 
     private DailyTasksFragmentContract.Model mModel;
     private DailyTasksFragmentContract.View mView;
@@ -42,14 +40,14 @@ public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.P
 
     @Override
     public void onButtonDeleteAllEvent() {
-        //удалить все элементы рисайкла
-        //mFakeToDoArrayList.clear();
-        //dailyTasksAdapter.notifyDataSetChanged();
+        mModel.deleteAllTodoForTheDay(date);
+        mToDoArrayList.clear();
+        dailyTasksAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void setRecyclerView(RecyclerView recyclerView) {
-        dailyTasksAdapter= new DailyTasksAdapter(mContext,this::onDeleteTaskBtnClick);
+        dailyTasksAdapter= new DailyTasksAdapter(mContext,this);
         dailyTasksAdapter.setList(mToDoArrayList);
         recyclerView.setAdapter(dailyTasksAdapter);
     }
@@ -59,17 +57,16 @@ public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.P
 
     }
 
-
-    @Override
     public void onDeleteTaskBtnClick(int position) {
        ToDo oneTaskForDelete= mToDoArrayList.get(position);
        mModel.deleteToDoTask(oneTaskForDelete.getId());
        long id= oneTaskForDelete.getId();
 
-       //отправить запрос в БД и удалить
         mToDoArrayList.remove(position);
         dailyTasksAdapter.notifyItemRemoved(position);
     }
+
+
 
     @Override
     public ArrayList<ToDo> takeToDoFromDB() {
