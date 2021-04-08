@@ -1,5 +1,6 @@
 package com.example.todolist.model;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,6 +22,15 @@ public class DailyTasksFragmentModel implements DailyTasksFragmentContract.Model
     public DailyTasksFragmentModel(Context context) {
         this.mContext = context;
         mDatabaseHelper= new DatabaseHelper(mContext);
+    }
+
+    @Override
+    public void completeToDoTask(long id) {
+        SQLiteDatabase database=mDatabaseHelper.getWritableDatabase();
+        ContentValues cv= new ContentValues();
+        cv.put("DONE","1");
+        database.update(DatabaseHelper.DB_TABLE,cv,"_id = "+id,null);
+        mDatabaseHelper.close();
     }
 
     @Override
@@ -69,6 +79,7 @@ public class DailyTasksFragmentModel implements DailyTasksFragmentContract.Model
         database.delete(DatabaseHelper.DB_TABLE,"DATE = \""+date +"\"",null);
         mDatabaseHelper.close();
     }
+
 
     private ArrayList<ToDo> getToDoArrayList(Cursor localCursor) {
 

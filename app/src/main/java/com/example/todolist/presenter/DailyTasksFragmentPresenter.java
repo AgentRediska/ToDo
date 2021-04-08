@@ -66,6 +66,17 @@ public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.P
         dailyTasksAdapter.notifyItemRemoved(position);
     }
 
+    public void onCompeteTaskBtnClick(int position) {
+        ToDo oneTaskForComplete= mToDoArrayList.get(position);
+        mModel.completeToDoTask(oneTaskForComplete.getId());
+        long id= oneTaskForComplete.getId();
+
+        oneTaskForComplete.setDone("1");
+        mToDoArrayList.set(position,oneTaskForComplete);
+
+        dailyTasksAdapter.notifyItemChanged(position);
+    }
+
 
 
     @Override

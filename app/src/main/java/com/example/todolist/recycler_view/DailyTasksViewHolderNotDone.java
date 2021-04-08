@@ -12,7 +12,8 @@ import com.example.todolist.presenter.DailyTasksFragmentPresenter;
 public class DailyTasksViewHolderNotDone extends RecyclerView.ViewHolder
                             implements View.OnClickListener{
     final TextView nameView;
-    final Button deleteTask;
+    final Button deleteTaskBtn;
+    final Button completeTaskBtn;
 
     @Override
     public void onClick(View v) {
@@ -25,11 +26,19 @@ public class DailyTasksViewHolderNotDone extends RecyclerView.ViewHolder
         super(view);
 
         nameView=(TextView)view.findViewById(R.id.nameToDo);
-        deleteTask=(Button) view.findViewById(R.id.btnDeleteToDo);
-        deleteTask.setOnClickListener(v->{
+        deleteTaskBtn=(Button) view.findViewById(R.id.btnDeleteToDo);
+        deleteTaskBtn.setOnClickListener(v->{
             int position=getAdapterPosition();
             dailyTasksFragmentPresenter.onDeleteTaskBtnClick(position);
         });
+
+        completeTaskBtn=(Button)view.findViewById(R.id.btnMarkCompleted);
+        completeTaskBtn.setOnClickListener(v -> {
+            int position=getAdapterPosition();
+            dailyTasksFragmentPresenter.onCompeteTaskBtnClick(position);
+        });
+
+
     }
 
 }
