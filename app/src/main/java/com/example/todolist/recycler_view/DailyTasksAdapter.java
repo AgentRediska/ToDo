@@ -21,7 +21,6 @@ public class DailyTasksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private final DailyTasksFragmentPresenter dailyTasksFragmentPresenter;
 
   public DailyTasksAdapter(Context context, DailyTasksFragmentPresenter dailyTasksFragmentPresenter){
-      //  this.mFakeToDoList=fakeList;
       this.dailyTasksFragmentPresenter=dailyTasksFragmentPresenter;
         this.mInflater=LayoutInflater.from(context);
     }
@@ -53,14 +52,22 @@ public class DailyTasksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public void onBindViewHolder(@NonNull  RecyclerView.ViewHolder holder, int position) {
         fakeToDo= mToDoArrayList.get(position);
+
         if(holder.getItemViewType()==0) {
             DailyTasksViewHolderNotDone holderNotDone=
                             (DailyTasksViewHolderNotDone)holder;
-            holderNotDone.nameView.setText(fakeToDo.getTitle());
+            holderNotDone.nameTextView.setText(fakeToDo.getTitle());
+            holderNotDone.detailTextView.setText(fakeToDo.getDetail());
+            holderNotDone.expandableLayout.setVisibility(View.GONE);
+
         }else {
             DailyTasksViewHolderDone holderDone=
                     (DailyTasksViewHolderDone)holder;
-            holderDone.nameView.setText(fakeToDo.getTitle());
+
+            holderDone.nameTextView.setText(fakeToDo.getTitle());
+            holderDone.detailTextView.setText(fakeToDo.getDetail());
+            holderDone.expandableLayout.setVisibility(View.GONE);
+
         }
     }
 

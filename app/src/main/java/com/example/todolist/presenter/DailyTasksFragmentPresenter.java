@@ -17,6 +17,7 @@ public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.P
     private DailyTasksFragmentContract.View mView;
     private final Context mContext;
     private final String date;
+    private  static ToDo oneTask;
 
     private DailyTasksAdapter dailyTasksAdapter;
     //!
@@ -58,25 +59,24 @@ public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.P
     }
 
     public void onDeleteTaskBtnClick(int position) {
-       ToDo oneTaskForDelete= mToDoArrayList.get(position);
-       mModel.deleteToDoTask(oneTaskForDelete.getId());
-       long id= oneTaskForDelete.getId();
+        oneTask= mToDoArrayList.get(position);
+       mModel.deleteToDoTask(oneTask.getId());
+       long id= oneTask.getId();
 
         mToDoArrayList.remove(position);
         dailyTasksAdapter.notifyItemRemoved(position);
     }
 
     public void onCompeteTaskBtnClick(int position) {
-        ToDo oneTaskForComplete= mToDoArrayList.get(position);
-        mModel.completeToDoTask(oneTaskForComplete.getId());
-        long id= oneTaskForComplete.getId();
+        oneTask= mToDoArrayList.get(position);
+        mModel.completeToDoTask(oneTask.getId());
+        long id= oneTask.getId();
 
-        oneTaskForComplete.setDone("1");
-        mToDoArrayList.set(position,oneTaskForComplete);
+        oneTask.setDone("1");
+        mToDoArrayList.set(position,oneTask);
 
         dailyTasksAdapter.notifyItemChanged(position);
     }
-
 
 
     @Override

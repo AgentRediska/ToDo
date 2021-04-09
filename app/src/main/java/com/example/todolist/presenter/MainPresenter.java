@@ -71,9 +71,15 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void generateToDo() {
-        mModel.addToDoTask(fragmentContext,"07.04.2021","Помыть посуду",0,"бла бла бла");
-        mModel.addToDoTask(fragmentContext,"05.04.2021","Сделать пары",0,"блак блак блак");
-        mModel.addToDoTask(fragmentContext,"05.04.2021","Пойти спать",1,"бу бу бу бу");
+        mModel.addToDoTask(fragmentContext,"07.04.2021","Помыть посуду",0," Подскажите, в какую сторону гуглить, или может есть стандартные реализации.");
+        mModel.addToDoTask(fragmentContext,"07.04.2021","Пойти",1,"  или может есть стандартные реализации.");
+
+        mModel.addToDoTask(fragmentContext,"08.04.2021","Сделать пары",0,"блак блак блак");
+
+        mModel.addToDoTask(fragmentContext,"09.04.2021",
+                 "Побубнеть",0,"бу бу бу бу");
+        mModel.addToDoTask(fragmentContext,"09.04.2021",
+                "Подсказать ответ на вопрос",1,"Всем привет. Необходимо реализовать view элемент, который раскрывается при нажатии. Пример реализован в приложении часы в Android (см. скриншоты)");
     }
 
     @Override
