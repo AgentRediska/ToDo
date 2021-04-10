@@ -85,11 +85,6 @@ public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.P
         dailyTasksAdapter.notifyItemChanged(position);
     }
 
-    public void onUpdateTasksOfDay(){
-        mToDoArrayList=takeToDoFromDB();
-        dailyTasksAdapter.notifyDataSetChanged();
-    }
-
     @Override
     public ArrayList<ToDo> takeToDoFromDB() {
        return mModel.getAllTasksByDate(date);

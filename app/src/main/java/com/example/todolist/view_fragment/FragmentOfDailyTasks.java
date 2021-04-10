@@ -59,7 +59,6 @@ public class FragmentOfDailyTasks extends Fragment implements DailyTasksFragment
         btn_complete_all=(Button)view.findViewById(R.id.btn_complete_all);
         btn_complete_all.setOnClickListener(v -> {
             mPresenter.onButtonCompleteAllEvent();
-          //  mPresenter.onUpdateTasksOfDay();
             } );
 
         btn_delete_all=(Button)view.findViewById(R.id.btn_delete_all);

@@ -27,7 +27,6 @@ public interface DailyTasksFragmentContract {
          void onButtonCompleteAllEvent();
          void onButtonDeleteAllEvent();
          void setRecyclerView(RecyclerView recyclerView);
-         void onUpdateTasksOfDay();
          void onDestroy();
 
          ArrayList<ToDo> takeToDoFromDB();
