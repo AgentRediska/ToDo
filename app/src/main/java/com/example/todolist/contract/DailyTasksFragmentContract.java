@@ -18,6 +18,7 @@ public interface DailyTasksFragmentContract {
          void deleteToDoTask(long id);
          void completeToDoTask(long id);
          void deleteAllTodoForTheDay(String date);
+         void completeAllTodoForTheDay(String date);
          ArrayList<ToDo>  getAllTasksFromDB();
          ArrayList<ToDo>  getAllTasksByDate( String date);
      }
@@ -26,6 +27,7 @@ public interface DailyTasksFragmentContract {
          void onButtonCompleteAllEvent();
          void onButtonDeleteAllEvent();
          void setRecyclerView(RecyclerView recyclerView);
+         void onUpdateTasksOfDay();
          void onDestroy();
 
          ArrayList<ToDo> takeToDoFromDB();

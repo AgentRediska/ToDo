@@ -34,6 +34,17 @@ public class DailyTasksFragmentModel implements DailyTasksFragmentContract.Model
     }
 
     @Override
+    public  void completeAllTodoForTheDay(String date) {
+        SQLiteDatabase database= mDatabaseHelper.getWritableDatabase();
+        ContentValues cv=new ContentValues();
+        String selection="DATE = ? AND DONE =?";
+        String[] selectionArgs= new String[]{ date, "0" };
+        cv.put("DONE","1");
+        database.update(DatabaseHelper.DB_TABLE,cv,selection,selectionArgs);
+        mDatabaseHelper.close();
+    }
+
+    @Override
     public void deleteToDoTask(long id) {
         SQLiteDatabase database=mDatabaseHelper.getWritableDatabase();
         database.delete(DatabaseHelper.DB_TABLE,"_id = "+id,null);

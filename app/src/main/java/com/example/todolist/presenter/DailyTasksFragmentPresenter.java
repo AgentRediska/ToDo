@@ -1,6 +1,7 @@
 package com.example.todolist.presenter;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +13,8 @@ import com.example.todolist.recycler_view.DailyTasksAdapter;
 import java.util.ArrayList;
 
 public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.Presenter {
+
+    public final String TAG = "myLogs";
 
     private DailyTasksFragmentContract.Model mModel;
     private DailyTasksFragmentContract.View mView;
@@ -37,6 +40,10 @@ public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.P
     @Override
     public void onButtonCompleteAllEvent() {
         //отметить все элементы рисайкла выполненными
+       mModel.completeAllTodoForTheDay(date);
+       mToDoArrayList.clear();
+       mToDoArrayList.addAll(takeToDoFromDB());
+       dailyTasksAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -78,6 +85,10 @@ public class DailyTasksFragmentPresenter implements DailyTasksFragmentContract.P
         dailyTasksAdapter.notifyItemChanged(position);
     }
 
+    public void onUpdateTasksOfDay(){
+        mToDoArrayList=takeToDoFromDB();
+        dailyTasksAdapter.notifyDataSetChanged();
+    }
 
     @Override
     public ArrayList<ToDo> takeToDoFromDB() {
