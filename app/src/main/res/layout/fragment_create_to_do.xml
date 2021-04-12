@@ -63,7 +63,8 @@
         android:maxLength="60"
         android:textColor="@color/black"
         android:hint="Введите заголовок"
-        android:textColorHint="@color/black"/>
+        android:textColorHint="@color/black"
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/detailEditText"
@@ -76,7 +77,8 @@
         android:maxLength="200"
         android:textColor="@color/black"
         android:hint="Введите описание задачи"
-        android:textColorHint="@color/black"/>
+        android:textColorHint="@color/black"
+        android:singleLine="true"/>
 
     <Button
         android:id="@+id/applyBtn"
