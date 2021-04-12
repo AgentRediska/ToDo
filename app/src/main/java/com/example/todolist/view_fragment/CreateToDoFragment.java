@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.todolist.R;
+import com.example.todolist.ToDo;
 
 
 public class CreateToDoFragment extends DialogFragment {
@@ -55,12 +56,27 @@ public class CreateToDoFragment extends DialogFragment {
 
         calendarDialogBtn=view.findViewById(R.id.calendarDialogBtn);
         calendarDialogBtn.setOnClickListener(v-> {
-            Intent intent=new Intent();
-            intent.putExtra("key","hello");
+            Intent intent=createIntentBox();
             getTargetFragment().onActivityResult(
                     getTargetRequestCode(), Activity.RESULT_OK,intent);
             getFragmentManager().popBackStack();
         });
         return view;
+    }
+
+    private Intent createIntentBox(){
+        Intent intent=new Intent();
+        ToDo task=createTask();
+        intent.putExtra("NEW_TASK",task);
+        return intent;
+    }
+
+    private ToDo createTask(){
+        ToDo task= new ToDo();
+        task.setTitle("Пример");
+        task.setDone("0");
+        task.setDetail("ExampleExample");
+        task.setDate("12.04.2021");
+        return task;
     }
 }

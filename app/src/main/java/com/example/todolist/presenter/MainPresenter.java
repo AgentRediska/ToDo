@@ -8,6 +8,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.todolist.ToDo;
 import com.example.todolist.contract.MainContract;
 import com.example.todolist.model.MainModel;
 import com.example.todolist.view_fragment.CreateToDoFragment;
@@ -72,17 +73,8 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
-    public void generateToDo() {
-
-//        mModel.addToDoTask(fragmentContext,"07.04.2021","Помыть посуду",0," Подскажите, в какую сторону гуглить, или может есть стандартные реализации.");
-//        mModel.addToDoTask(fragmentContext,"07.04.2021","Пойти",1,"  или может есть стандартные реализации.");
-//
-//        mModel.addToDoTask(fragmentContext,"08.04.2021","Сделать пары",0,"блак блак блак");
-//
-//        mModel.addToDoTask(fragmentContext,"09.04.2021",
-//                 "Побубнеть",0,"бу бу бу бу");
-//        mModel.addToDoTask(fragmentContext,"09.04.2021",
-//                "Подсказать ответ на вопрос",1,"Всем привет. Необходимо реализовать view элемент, который раскрывается при нажатии. Пример реализован в приложении часы в Android (см. скриншоты)");
+    public void setTask(ToDo task) {
+          mModel.addToDoTask(fragmentContext, task.getDate(),task.getTitle(),task.getDetail());
     }
 
     @Override

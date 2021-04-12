@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.todolist.R;
+import com.example.todolist.ToDo;
 import com.example.todolist.contract.MainContract;
 import com.example.todolist.presenter.MainPresenter;
 
@@ -72,7 +73,9 @@ public class MainFragment extends Fragment implements MainContract.View {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==120){
             if(resultCode== Activity.RESULT_OK){
-                mTextView.setText(data.getStringExtra("key"));
+                //принимает таск и кидаем в презентер
+                mPresenter.setTask(  (ToDo) data.getSerializableExtra("NEW_TASK")  );
+                replaceFragment();
             }else{
                 //action
             }

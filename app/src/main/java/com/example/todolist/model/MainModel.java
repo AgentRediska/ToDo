@@ -16,7 +16,7 @@ public class MainModel implements MainContract.Model {
 
     @Override
     public void addToDoTask(Context context, String date,
-                            String title, int done, String detail) {
+                            String title, String detail) {
 
         dbHelper= new DatabaseHelper(context);
         SQLiteDatabase database=dbHelper.getWritableDatabase();
@@ -24,7 +24,7 @@ public class MainModel implements MainContract.Model {
         ContentValues contentValues= new ContentValues();
         contentValues.put("DATE", date);
         contentValues.put("TITLE", title);
-        contentValues.put("DONE", done);
+        contentValues.put("DONE", "0");
         contentValues.put("DETAIL", detail);
        long rowID= database.insert(DatabaseHelper.DB_TABLE,null,contentValues);
         Log.d(LOG_TAG, "row inserted, ID = " + rowID);
