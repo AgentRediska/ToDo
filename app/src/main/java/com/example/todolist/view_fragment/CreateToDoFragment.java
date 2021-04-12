@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.todolist.R;
@@ -25,7 +26,8 @@ import java.util.Calendar;
 public class CreateToDoFragment extends DialogFragment {
 
     private TextView dateTextView;
-
+    private EditText titleEditText;
+    private EditText detailEditText;
     private Calendar dateAndTime;
 
     private static final String ARG_TODAY_DATE="date";
@@ -57,6 +59,9 @@ public class CreateToDoFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_create_to_do,null);
+
+        titleEditText=view.findViewById(R.id.titleEditText);
+        detailEditText=view.findViewById(R.id.detailEditText);
 
         dateTextView= view.findViewById(R.id.dateTextView);
         dateTextView.setText(dateText);
@@ -90,10 +95,16 @@ public class CreateToDoFragment extends DialogFragment {
 
     private ToDo createTask(){
         ToDo task= new ToDo();
-        task.setTitle("Пример");
+        if (titleEditText.getText()!=null){
+        task.setTitle(titleEditText.getText().toString());
+            }else {task.setTitle("Без названия");}
+
+        if (detailEditText.getText()!=null){
+        task.setDetail(detailEditText.getText().toString());
+        }else {task.setDetail("");}
+
         task.setDone("0");
-        task.setDetail("ExampleExample");
-        task.setDate("12.04.2021");
+        task.setDate(dateNumericText);
         return task;
     }
 
