@@ -29,6 +29,7 @@ public class CreateToDoFragment extends DialogFragment {
     private TextView dateTextView;
     private EditText titleEditText;
     private EditText detailEditText;
+    private  Intent intent;
     private Calendar dateAndTime;
 
     private static final String ARG_TODAY_DATE="date";
@@ -74,7 +75,7 @@ public class CreateToDoFragment extends DialogFragment {
 
         Button applyBtn = view.findViewById(R.id.applyBtn);
         applyBtn.setOnClickListener(v->{
-            Intent intent=createIntentBox();
+            intent=createIntentBox();
             getTargetFragment().onActivityResult(
                     getTargetRequestCode(), Activity.RESULT_OK,intent);
             getFragmentManager().popBackStack();
@@ -82,7 +83,7 @@ public class CreateToDoFragment extends DialogFragment {
 
         Button closeBtn = view.findViewById(R.id.closeBtn);
         closeBtn.setOnClickListener(v->{
-            getFragmentManager().popBackStack();
+            closeFragment();
         });
         return view;
     }
@@ -96,11 +97,11 @@ public class CreateToDoFragment extends DialogFragment {
 
     private ToDo createTask(){
         ToDo task= new ToDo();
-        if (titleEditText.getText()!=null){
+        if (titleEditText.getTextSize()<2){
         task.setTitle(titleEditText.getText().toString());
             }else {task.setTitle("Без названия");}
 
-        if (detailEditText.getText()!=null){
+        if (titleEditText.getTextSize()<2){
         task.setDetail(detailEditText.getText().toString());
         }else {task.setDetail("");}
 
@@ -136,4 +137,19 @@ public class CreateToDoFragment extends DialogFragment {
 
     }
 
+
+    private void closeFragment(){
+        intent=createIntentBox();
+        getTargetFragment().onActivityResult(
+                getTargetRequestCode(), Activity.RESULT_CANCELED,intent);
+        getFragmentManager().popBackStack();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if(intent==null){
+            closeFragment();
+        }
+    }
 }
