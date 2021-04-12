@@ -1,12 +1,15 @@
 package com.example.todolist.view_fragment;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +19,15 @@ import android.widget.TextView;
 import com.example.todolist.R;
 import com.example.todolist.ToDo;
 
+import java.util.Calendar;
+
 
 public class CreateToDoFragment extends DialogFragment {
 
     private TextView dateTextView;
-    private Button calendarDialogBtn;
-    private Button closeBtn;
-    private Button applyBtn;
 
-    private Bundle mBundle;
+    private Calendar dateAndTime;
+
     private static final String ARG_TODAY_DATE="date";
     private String dateText;
     private String dateNumericText;
@@ -44,9 +47,10 @@ public class CreateToDoFragment extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBundle=this.getArguments();
-        dateText=mBundle.getString(ARG_TODAY_DATE);
-        dateNumericText=mBundle.getString(ARG_TODAY_NUMERIC_DATE);
+        dateAndTime=Calendar.getInstance();
+        Bundle bundle = this.getArguments();
+        dateText= bundle.getString(ARG_TODAY_DATE);
+        dateNumericText= bundle.getString(ARG_TODAY_NUMERIC_DATE);
     }
 
     @Override
@@ -57,12 +61,12 @@ public class CreateToDoFragment extends DialogFragment {
         dateTextView= view.findViewById(R.id.dateTextView);
         dateTextView.setText(dateText);
 
-        calendarDialogBtn=view.findViewById(R.id.calendarDialogBtn);
+        Button calendarDialogBtn = view.findViewById(R.id.calendarDialogBtn);
         calendarDialogBtn.setOnClickListener(v-> {
-            //dwdw
+            selectDate();
         });
 
-        applyBtn=view.findViewById(R.id.applyBtn);
+        Button applyBtn = view.findViewById(R.id.applyBtn);
         applyBtn.setOnClickListener(v->{
             Intent intent=createIntentBox();
             getTargetFragment().onActivityResult(
@@ -70,7 +74,7 @@ public class CreateToDoFragment extends DialogFragment {
             getFragmentManager().popBackStack();
         });
 
-        closeBtn=view.findViewById(R.id.closeBtn);
+        Button closeBtn = view.findViewById(R.id.closeBtn);
         closeBtn.setOnClickListener(v->{
             getFragmentManager().popBackStack();
         });
@@ -92,4 +96,32 @@ public class CreateToDoFragment extends DialogFragment {
         task.setDate("12.04.2021");
         return task;
     }
+
+    public void selectDate() {
+        new DatePickerDialog(this.getContext(),mOnDateSetListener,
+                dateAndTime.get(Calendar.YEAR),
+                dateAndTime.get(Calendar.MONTH),
+                dateAndTime.get(Calendar.DAY_OF_MONTH)).show();
+    }
+
+    DatePickerDialog.OnDateSetListener mOnDateSetListener= (view, year, month, dayOfMonth) -> {
+        dateAndTime.set(Calendar.YEAR,year);
+        dateAndTime.set(Calendar.MONTH,month);
+        dateAndTime.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+        setInitialDateTime();
+
+    };
+
+    public void setInitialDateTime() {
+        dateText= DateUtils.formatDateTime(this.getContext(),
+                dateAndTime.getTimeInMillis(),
+                DateUtils.FORMAT_SHOW_DATE| DateUtils.FORMAT_SHOW_YEAR);
+        dateTextView.setText(dateText);
+
+        dateNumericText= DateUtils.formatDateTime(this.getContext(),
+                dateAndTime.getTimeInMillis(),
+                DateUtils.FORMAT_NUMERIC_DATE|DateUtils.FORMAT_SHOW_YEAR);
+
+    }
+
 }
