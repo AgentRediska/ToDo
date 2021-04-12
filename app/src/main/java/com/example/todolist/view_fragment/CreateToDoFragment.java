@@ -21,6 +21,9 @@ public class CreateToDoFragment extends DialogFragment {
 
     private TextView dateTextView;
     private Button calendarDialogBtn;
+    private Button closeBtn;
+    private Button applyBtn;
+
     private Bundle mBundle;
     private static final String ARG_TODAY_DATE="date";
     private String dateText;
@@ -56,9 +59,19 @@ public class CreateToDoFragment extends DialogFragment {
 
         calendarDialogBtn=view.findViewById(R.id.calendarDialogBtn);
         calendarDialogBtn.setOnClickListener(v-> {
+            //dwdw
+        });
+
+        applyBtn=view.findViewById(R.id.applyBtn);
+        applyBtn.setOnClickListener(v->{
             Intent intent=createIntentBox();
             getTargetFragment().onActivityResult(
                     getTargetRequestCode(), Activity.RESULT_OK,intent);
+            getFragmentManager().popBackStack();
+        });
+
+        closeBtn=view.findViewById(R.id.closeBtn);
+        closeBtn.setOnClickListener(v->{
             getFragmentManager().popBackStack();
         });
         return view;

@@ -18,6 +18,14 @@
     android:layout_marginBottom="30dp"
     android:background="@color/white">
 
+    <Button
+        android:id="@+id/closeBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="end"
+        android:background="@color/bordo"
+        android:layout_marginBottom="10dp" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -30,7 +38,7 @@
             android:layout_centerVertical="true"
             android:text="DateText"
             android:textColor="@color/black"
-            android:textSize="30sp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/calendarDialogBtn"
@@ -65,6 +73,15 @@
         android:textColor="@color/black"
         android:hint="Введите описание задачи"
         android:textColorHint="@color/black"/>
+
+    <Button
+        android:id="@+id/applyBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@color/indian_green"
+        android:text="apply" />
 
 </LinearLayout>
 </FrameLayout>
