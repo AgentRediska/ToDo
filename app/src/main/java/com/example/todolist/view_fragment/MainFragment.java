@@ -1,7 +1,10 @@
 package com.example.todolist.view_fragment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -50,12 +53,30 @@ public class MainFragment extends Fragment implements MainContract.View {
 
         mButtonAddTask=(Button)view.findViewById(R.id.addTaskBtn);
         mButtonAddTask.setOnClickListener(v -> {
-            mPresenter.generateToDo();
+            //mPresenter.generateToDo();
+
+            CreateToDoFragment createToDoFragment= new CreateToDoFragment();
+            createToDoFragment.setTargetFragment(MainFragment.this,120);
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container_daily_tasks_fragment,createToDoFragment)
+                    .addToBackStack("null").commit();
         //v -> replaceFragment()
         });
 
         replaceFragment();
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==120){
+            if(resultCode== Activity.RESULT_OK){
+                mTextView.setText(data.getStringExtra("key"));
+            }else{
+                //action
+            }
+        }
     }
 
     @Override

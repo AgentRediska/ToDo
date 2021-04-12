@@ -3,20 +3,20 @@ package com.example.todolist.presenter;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.text.format.DateUtils;
-import android.widget.DatePicker;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.todolist.contract.MainContract;
 import com.example.todolist.model.MainModel;
+import com.example.todolist.view_fragment.CreateToDoFragment;
 import com.example.todolist.view_fragment.FragmentOfDailyTasks;
 import com.example.todolist.view_fragment.MainFragment;
 
 import java.util.Calendar;
 
 public class MainPresenter implements MainContract.Presenter {
-    FragmentTransaction ftAddFrag;
     private MainContract.View mView;
     private MainContract.Model mModel;
     private Context fragmentContext;
@@ -28,6 +28,7 @@ public class MainPresenter implements MainContract.Presenter {
         this.fragmentContext=context;
         this.mView=mView;
         this.mModel= new MainModel();
+
 
     }
 
@@ -71,15 +72,16 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void generateToDo() {
-        mModel.addToDoTask(fragmentContext,"07.04.2021","Помыть посуду",0," Подскажите, в какую сторону гуглить, или может есть стандартные реализации.");
-        mModel.addToDoTask(fragmentContext,"07.04.2021","Пойти",1,"  или может есть стандартные реализации.");
 
-        mModel.addToDoTask(fragmentContext,"08.04.2021","Сделать пары",0,"блак блак блак");
-
-        mModel.addToDoTask(fragmentContext,"09.04.2021",
-                 "Побубнеть",0,"бу бу бу бу");
-        mModel.addToDoTask(fragmentContext,"09.04.2021",
-                "Подсказать ответ на вопрос",1,"Всем привет. Необходимо реализовать view элемент, который раскрывается при нажатии. Пример реализован в приложении часы в Android (см. скриншоты)");
+//        mModel.addToDoTask(fragmentContext,"07.04.2021","Помыть посуду",0," Подскажите, в какую сторону гуглить, или может есть стандартные реализации.");
+//        mModel.addToDoTask(fragmentContext,"07.04.2021","Пойти",1,"  или может есть стандартные реализации.");
+//
+//        mModel.addToDoTask(fragmentContext,"08.04.2021","Сделать пары",0,"блак блак блак");
+//
+//        mModel.addToDoTask(fragmentContext,"09.04.2021",
+//                 "Побубнеть",0,"бу бу бу бу");
+//        mModel.addToDoTask(fragmentContext,"09.04.2021",
+//                "Подсказать ответ на вопрос",1,"Всем привет. Необходимо реализовать view элемент, который раскрывается при нажатии. Пример реализован в приложении часы в Android (см. скриншоты)");
     }
 
     @Override
