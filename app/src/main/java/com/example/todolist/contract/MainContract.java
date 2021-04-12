@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.todolist.view_fragment.CreateToDoFragment;
 import com.example.todolist.view_fragment.FragmentOfDailyTasks;
 
 public interface MainContract {
@@ -21,6 +22,7 @@ public interface MainContract {
         void setInitialDateTime();
         void setInitialNumericDateTime();
         FragmentOfDailyTasks onCreateFragmentTasks();
+        CreateToDoFragment onCreateCreateToDoFragment();
         void onDestroy();
     }
 

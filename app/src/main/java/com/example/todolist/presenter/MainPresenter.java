@@ -21,6 +21,7 @@ public class MainPresenter implements MainContract.Presenter {
     private MainContract.Model mModel;
     private Context fragmentContext;
     private String dateNumericText;
+    private String dateText;
 
     private Calendar dateAndTime=Calendar.getInstance();
 
@@ -51,7 +52,7 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void setInitialDateTime() {
-        String dateText= DateUtils.formatDateTime(fragmentContext,
+        dateText= DateUtils.formatDateTime(fragmentContext,
                 dateAndTime.getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_DATE| DateUtils.FORMAT_SHOW_YEAR);
         setDate(dateText);
@@ -88,6 +89,12 @@ public class MainPresenter implements MainContract.Presenter {
     public FragmentOfDailyTasks onCreateFragmentTasks() {
         FragmentOfDailyTasks fragmentOfDailyTasks= FragmentOfDailyTasks.newFragmentOfDailyTasks(dateNumericText);
         return fragmentOfDailyTasks;
+    }
+
+    @Override
+    public CreateToDoFragment onCreateCreateToDoFragment() {
+        CreateToDoFragment createToDoFragment=CreateToDoFragment.newInstance(dateText,dateNumericText);
+        return createToDoFragment;
     }
 
     @Override

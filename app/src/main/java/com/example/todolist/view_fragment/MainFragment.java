@@ -55,11 +55,11 @@ public class MainFragment extends Fragment implements MainContract.View {
         mButtonAddTask.setOnClickListener(v -> {
             //mPresenter.generateToDo();
 
-            CreateToDoFragment createToDoFragment= new CreateToDoFragment();
+            CreateToDoFragment createToDoFragment=mPresenter.onCreateCreateToDoFragment() ;
             createToDoFragment.setTargetFragment(MainFragment.this,120);
             getActivity().getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container_daily_tasks_fragment,createToDoFragment)
-                    .addToBackStack("null").commit();
+                    .addToBackStack(null).commit();
         //v -> replaceFragment()
         });
 
@@ -96,7 +96,7 @@ public class MainFragment extends Fragment implements MainContract.View {
         FragmentOfDailyTasks fragmentOfDailyTasks=mPresenter.onCreateFragmentTasks();
         ftAddFragTasks.replace(R.id.container_daily_tasks_fragment,fragmentOfDailyTasks);
         ftAddFragTasks.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-       // ftAddFragTasks.addToBackStack(null);
+        ftAddFragTasks.addToBackStack(null);
         ftAddFragTasks.commit();
     }
 
