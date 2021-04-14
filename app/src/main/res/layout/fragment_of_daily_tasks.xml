@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/list_background"
+    android:background="@drawable/ic_recyclerview_background"
     android:padding="10dp"
     tools:context=".view_fragment.FragmentOfDailyTasks">
 
@@ -26,12 +26,12 @@
 
     <Button
         android:id="@+id/btn_delete_all"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
 
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/style_btn_delete_all"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/style_btn_delete"
         android:fontFamily="@font/play_bold"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
@@ -45,11 +45,11 @@
 
     <Button
         android:id="@+id/btn_complete_all"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/style_btn_complete_all"
+        android:background="@drawable/style_btn_complete"
         android:fontFamily="@font/play_bold"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"

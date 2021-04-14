@@ -97,11 +97,11 @@ public class CreateToDoFragment extends DialogFragment {
 
     private ToDo createTask(){
         ToDo task= new ToDo();
-        if (titleEditText.getTextSize()<2){
+        if (!titleEditText.getText().toString().equals("")){
         task.setTitle(titleEditText.getText().toString());
             }else {task.setTitle("Без названия");}
 
-        if (titleEditText.getTextSize()<2){
+        if (!detailEditText.getText().toString().equals("")){
         task.setDetail(detailEditText.getText().toString());
         }else {task.setDetail("");}
 

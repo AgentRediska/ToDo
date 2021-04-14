@@ -63,9 +63,8 @@ public class MainFragment extends Fragment implements MainContract.View {
         mButtonAddTask=(Button)view.findViewById(R.id.addTaskBtn);
         mButtonAddTask.setOnClickListener(v -> {
             //mPresenter.generateToDo();
-            createToDoFragmentFL.setVisibility(View.VISIBLE);
             containerLayout.setVisibility(View.INVISIBLE);
-
+            createToDoFragmentFL.setVisibility(View.VISIBLE);
 
             CreateToDoFragment createToDoFragment=mPresenter.onCreateCreateToDoFragment() ;
             createToDoFragment.setTargetFragment(MainFragment.this,120);

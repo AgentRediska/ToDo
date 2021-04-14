@@ -16,14 +16,16 @@
     android:padding="10dp"
     android:layout_gravity="center"
     android:layout_marginBottom="30dp"
-    android:background="@color/white">
+    android:background="@drawable/style_background_corners_black">
 
     <Button
         android:id="@+id/closeBtn"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_gravity="end"
-        android:background="@color/bordo"
+        android:background="@drawable/style_btn_delete"
+        android:text="X"
+        android:textColor="@color/bordo"
         android:layout_marginBottom="10dp" />
 
     <RelativeLayout
@@ -50,7 +52,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="5dp"
 
-            android:background="@drawable/calendar"
+            android:background="@drawable/ic_calendar_color"
             app:backgroundTint="@null" />
     </RelativeLayout>
 
@@ -60,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:maxLines="2"
-        android:maxLength="60"
+        android:maxLength="20"
         android:textColor="@color/black"
         android:hint="Введите заголовок"
         android:textColorHint="@color/black"
@@ -86,8 +88,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:background="@color/indian_green"
-        android:text="apply" />
+        android:background="@drawable/style_btn_complete"
+        android:text="apply"
+        android:textColor="@color/indian_green"/>
 
 </LinearLayout>
 </FrameLayout>
